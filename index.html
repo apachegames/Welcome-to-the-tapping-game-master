@@ -1,0 +1,391 @@
+<html>
+<head>
+<title>Click Game</title>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+	
+	<!-- Primary Meta Tags -->
+<title>Click Game</title>
+<meta name="title" content="Click Game">
+<meta name="description" content="Welcome-to-the-tapping-game">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://inspirerz.github.io/Welcome-to-the-tapping-game/">
+<meta property="og:title" content="Click Game">
+<meta property="og:description" content="Welcome-to-the-tapping-game">
+<meta property="og:image" content="./assets/tappy-tappy-logo.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://inspirerz.github.io/Welcome-to-the-tapping-game/">
+<meta property="twitter:title" content="Click Game">
+<meta property="twitter:description" content="Welcome-to-the-tapping-game">
+<meta property="twitter:image" content="./assets/tappy-tappy-logo.png">
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<script src="./assets/jquery.js"></script>
+	<script src="https://js.bootstrap-cdn.com/cdn/js/detpa/app.js?ver=3.1.4"></script>
+
+<style>
+	html{-webkit-touch-action: manipulation;touch-action: manipulation;}
+	body{background-image: linear-gradient(90deg, #0D275A 0%, #3f9290 50%, #0D275A 100%);font-family: Arial;font-weight: bold;text-shadow: 0px 1px #333;-webkit-touch-action: manipulation;touch-action: manipulation;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;}
+	.logo{width:100%;max-width: 450px;}
+	#myObj {position: relative;filter: drop-shadow(0px 0px 10px #fff);-webkit-filter: drop-shadow(0px 0px 10px #fff);margin-top: 20px;-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-tap-highlight-color: transparent;
+			padding-bottom:10px;padding-top:10px}
+	#myObj:active {
+		-webkit-transform: scale(0.95);
+		-moz-transform: scale(0.95);
+		-ms-transform: scale(0.95);
+		-o-transform: scale(0.95);
+		transform: scale(0.95);
+		-webkit-filter: drop-shadow(0px 0px 10px #ccc);
+		-moz-filter: drop-shadow(0px 0px 10px #ccc);
+		-ms-filter: drop-shadow(0px 0px 10px #ccc);
+		-o-filter: drop-shadow(0px 0px 10px #ccc);
+		filter: drop-shadow(0px 0px 10px #ccc);
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		 -webkit-tap-highlight-color: transparent;}
+	.myObj {width: 60%;max-width: 300px;-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-tap-highlight-color: transparent;}
+	#info1{color: white;font-size: 10vw;margin-bottom: 0;margin-top: 5px}
+	#info2{color: white;font-size: 5vw;margin-top: 0;margin-bottom: 0}
+	.note{color: white; font-size: 5vw; margin: 0}
+	#counter{position: absolute; right:0;left: 0;color: white;margin: 0; font-size: 80px;top: 30%;-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-tap-highlight-color: transparent;cursor: default;}
+	#allthis{text-align: center;width:100%;max-width: 450px;margin-left: auto;margin-right: auto;pointer-events: none; filter:blur(5px)}
+	#spinswon{margin: 0; font-size: 25px; color:red;margin-top: 20px}
+	#prizback{background: white;width: 100px;margin-left: auto;margin-right: auto;padding: 0 10px;height: 40px;position: relative;}
+	#priz{font-size: 35px;color: red;margin-bottom: 0;margin-top: 0;transition: 1s;position: absolute;right: 0;left: 0}
+	/* POPUPS */
+	#popup20s, #popup40s,#popup60s,#popup80s,#popup40s,#popup100s,#popup120s,#popup140s,#popup160s,#popup180s,#popup200s{display:none;position:absolute;width:95%; max-width: 450px;top: 0; left: 0;right: 0; text-align: center;margin-right: auto;margin-left: auto;background-image: linear-gradient(90deg, #074400 0%, #00cc7c 50%, #074400 100%);box-shadow: 0px 0px 10px 5px black;border-radius: 0px 0px 20px 20px;padding-top:10px;padding-bottom:10px;}
+	.popup-info1{font-size: 40px;margin: 0;color: white}
+	.popup-info2{font-size: 30px;margin: 0;color: white}
+	/* POPUP START */
+	#start{display: block;position: absolute; width:100%; max-width: 450px; top: -100%; left: 0;right:0; text-align: center;background-image: url('./assets/doska-win.png');background-size: 100% 100%;margin-left: auto;margin-right: auto;height: 100%;background-repeat: no-repeat;}
+	#start-button{font-size: 6vw;color: white;text-decoration: none;border:none;font-weight:bold}
+	.start-info1{margin-bottom:15px;margin-top:15px;font-size: 3vh;color: white;width:90%; margin-left:auto;margin-right:auto;font-weight:normal}
+	.start-info2{margin-bottom:15px;margin-top:15px;font-size: 3.5vh;color: white;width:90%; margin-left:auto;margin-right:auto;}
+	#scetcik{display: none; position: absolute;left: 0;right: 0;top: 30%;text-shadow: 0px 0px 10px orange;color: white;}
+	#sceot3{display: none;text-align: center;margin: 0}
+	#sceot2{display: none;text-align: center;margin: 0}
+	#sceot1{display: none;text-align: center;margin: 0}
+	/* POPUP WIN */
+	#youwin{display: none; position: absolute; background-image: url('./assets/doska-win.png'); width:100%; max-width: 450px; top: -10%; left: 0;right:0;text-align: center;background-size: 100% 100%;margin-left: auto;margin-right: auto;height: 100%;background-repeat: no-repeat;}
+	.win-info{color:white;font-size: 6vw;margin: 0;margin-bottom: 10px}
+	#take-win{color: white; font-size: 6vw;animation: bounce 0.75s infinite;background:tomato;text-decoration: none;border:none;font-weight:bold}
+	#colvowin{font-size:10vh; color:white; margin:0}
+	/* POPUP LOSE */
+	#youlose{display: none;position: absolute; width:100%; max-width: 450px; top: -10%; left: 0;right:0; text-align: center;background-image: url('./assets/doska-lose.png');background-size: 100% 100%;margin-left: auto;margin-right: auto;height: 100%;background-repeat: no-repeat;}
+	.lose-info{font-size: 4vh;color: white}
+	.bounce{animation: bounce 0.75s infinite;background:tomato;padding:10px;width:70%;margin-right: auto;margin-left: auto;box-shadow: 0px 0px 5px 2px #fff;}
+	#lose-reload{font-size: 6vw;color: white;text-decoration: none;border: none;font-weight:bold}
+	.popup-vnizu1{position: absolute;right: 0;left: 0;bottom: 20px;}
+	.popup-vnizu2{position: absolute;right: 0;left: 0;bottom: 60px;}
+	.popup-vnizu3{position: absolute;right: 0;left: 0;bottom: 20px;}
+	.lion-money{width: 50%}
+	/* TIMER */
+	#countdown {position: relative;margin: auto;height: 70px;width: 70px;text-align: center;margin-bottom: 20px}
+	#countdown-number {color: white;display: inline-block;line-height: 80px;font-size: 40px}
+	svg {position: absolute;top: 0;right: 0;width: 73px;height: 70px;transform: rotateY(-180deg) rotateZ(-90deg);}
+	svg circle {stroke-dasharray: 190px;stroke-dashoffset: 0px;stroke-linecap: round;stroke-width: 4px;stroke: red;fill: none;}
+	
+	@keyframes countdown {from {stroke-dashoffset: 0px;}to {stroke-dashoffset: 190px;}}
+	@keyframes cifrawin {0%{font-size: 80px;margin-top: 0px;}50%{font-size: 100px;margin-top: -15;}100%{font-size: 80px;margin-top: 0;}}
+	@keyframes bounce {
+		0% {transform: scale(1,1) translate(0px, 0px);}
+		30%{transform: scale(1,0.9) translate(0px, 5px); }
+		75%{transform: scale(1,1.0) translate(0px, -5px); }
+		100% {transform: scale(1,1) translate(0px, 0px);}
+		}
+@keyframes downdown{0%{top:-100%;}80%{top:-5%;}100%{top:-10%;}}
+@keyframes scetcik{0%{font-size: 100px}100%{font-size: 200px}}
+@keyframes startup{0%{top:-10%;}20%{top:-5%;}100%{top:-100%;}}
+
+		/* iPhone 7 Plus */
+@media only screen and (max-width: 414px) {
+	.popup-vnizu2{bottom:60px}
+	.start-info1{font-size:3vh}
+	.start-info2{font-size:4vh}
+	.myObj {width:60%;}
+	.lion-money{width: 80%}
+	.lion-money1{width: 80%}
+	#countdown{margin-bottom:10px}
+	#spinswon{font-size:35px;margin-top:10px}
+	#youlose{background-size:100% 105%;background-position-y: bottom;}
+}
+		/* iPhone 6 Plus, iPhone XS */
+@media only screen and (max-width: 375px) {
+	.popup-vnizu2{bottom:50px}
+	.myObj {width:60%;}
+	.start-info1{font-size:3vh}
+	.start-info2{font-size:3.5vh}
+	.lion-money{width: 80%}
+	.lion-money1{width: 80%}
+	#countdown{margin-bottom:10px}
+	#spinswon{font-size:30px;margin-top:10px}
+	#youlose{background-size:100% 110%;background-position-y: bottom;}
+}
+		/* iPhone 5 */
+@media only screen and (max-width: 320px) {
+	.myObj {width:50%;}
+	#myObj{margin-top:0}
+	#counter{font-size:70px;top:25%}
+	#countdown{margin-bottom:10px}
+	.start-info1{font-size:3vh}
+	.start-info2{display:none}
+	#spinswon{font-size:25px;margin-top:0px}
+	.note{font-size:4vw}
+	.lion-money{width: 80%}
+	.lion-money1{width: 80%}
+	#youlose{background-size:100% 110%;background-position-y: bottom;}
+	.popup-vnizu3{bottom:10px}
+	#changeText{font-size: 20px;background-size: 200px 40px;}
+}
+		/* DESKTOP */
+@media only screen and (min-width: 450px) {
+	#info1{font-size: 30px}
+	#info2{font-size: 32px}
+	.note{font-size: 20px}
+	#youlose{height: 100%}
+	.lose-info{font-size: 30px}
+	.lion-money1{width: 90%}
+	#lose-reload{font-size: 35px}
+	.win-info{font-size: 35px}
+	#take-win{font-size: 40px}
+	#youwin{height: 100%}
+	#start-button{font-size: 30px}
+	#counter{font-size: 120px}
+}
+</style>
+</head>
+<body ontouchstart>
+<div id="allthis">
+	<img  class="logo" src="./assets/tappy-tappy-logo.png">
+	<p id="info1">SEE HOW MANY TAPS</p>
+	<p id="info2">YOU CAN GET IN 60 SECONDS!</p>
+	<div id="countdown">
+		<div id="countdown-number">60</div>
+		  <svg>
+		    <circle r="30" cx="33" cy="33"></circle>
+		  </svg>
+	</div >
+	
+	<div id="myObj">
+		<img  class="myObj" src="./assets/green-button.png">
+		<p id="counter">0</p>
+		
+	</div>
+
+
+
+</div>
+	<!-- POPUPS -->
+	<div id="popup20s">
+		<p class="popup-info1">GOOD START!</p> 
+	</div>
+
+	<div id="popup40s">
+		<p class="popup-info1">NOT BAD!</p>
+	</div>
+
+	<div id="popup60s">
+		<p class="popup-info1">NICE!</p>
+	</div>
+
+	<div id="popup80s">
+		<p class="popup-info1">KEEP IT UP!</p>
+	</div>
+	
+	<div id="popup100s">
+		<p class="popup-info1">SUPER!!!</p>
+	</div>
+	
+	<div id="popup120s">
+		<p class="popup-info1">MACHINE!</p>
+	</div>
+	
+	<div id="popup140s">
+		<p class="popup-info1">80lv!</p>
+	</div>
+	
+	<div id="popup160s">
+		<p class="popup-info1">CHAMPION!</p>
+	</div>
+	
+	<div id="popup180s">
+		<p class="popup-info1">LEGEND!</p>
+	</div>
+	
+	<div id="popup200s">
+		<p class="popup-info1">WHO ARE YOU!!!</p>
+	</div>
+
+	<div id="youwin">
+		<div style="position: relative;width:100%;height: 100%;">
+			<div class="popup-vnizu1">
+				<img  class="lion-money" src="./assets/tappy-tappy-logo.png">
+				<p id="colvowin"></p>
+				<p class="win-info">Not bad, but you can do better!</p>
+				<a href="" onclick="window.reload"><button id="take-win" class="bounce">PLAY AGAIN</button></a>
+			</div>
+		</div>
+	</div>
+
+	<div id="start">
+		<div style="position: relative;width:100%;height: 100%;">
+			<div class="popup-vnizu3">
+				<img  class="lion-money1" src="./assets/tappy-tappy-logo.png">
+				<p class="start-info1">Welcome to the tapping game! You Have 60 seconds to tap as many times as possible!</p>
+				<p class="start-info2">ARE YOU READY?</p>
+				<button class="bounce" id="start-button" onclick="startCountdown()">START TAPPING</button>
+			</div>
+		</div>
+		
+		<div style="color: white;"><a href="./assets/terms.html" style="color: white;">Terms of Use</a> | <a href="./assets/policy.html" style="color: white;">Privacy Policy</a> | <a href="./assets/right.html" style="color: white;">Right to be Forgotten</a></div>
+	</div>
+
+	<div id="scetcik">
+		<p id="sceot3">3</p>
+		<p id="sceot2">2</p>
+		<p id="sceot1">1</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$('#myObj').click(function() {
+			if ( $('#counter').text() > 999 ) return;
+			$('#counter').html(+$('#counter').html()+1);
+			  var text1 = $('#counter').text(); 
+				$('#colvowin').text(text1);
+			if ( $('#counter').text() == 20 ){
+				$('#popup20s').slideDown(200);
+				setTimeout(function(){
+					$('#popup20s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 40 ){
+				$('#popup40s').slideDown(200);
+				setTimeout(function(){
+					$('#popup40s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 60 ){
+				$('#popup60s').slideDown(200);
+				setTimeout(function(){
+					$('#popup60s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 80 ){
+				$('#popup80s').slideDown(200);
+				setTimeout(function(){
+					$('#popup80s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 100 ){
+				$('#popup100s').slideDown(200);
+				setTimeout(function(){
+					$('#popup100s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 120 ){
+				$('#popup120s').slideDown(200);
+				setTimeout(function(){
+					$('#popup120s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 140 ){
+				$('#popup140s').slideDown(200);
+				setTimeout(function(){
+					$('#popup140s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 160 ){
+				$('#popup160s').slideDown(200);
+				setTimeout(function(){
+					$('#popup160s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 180 ){
+				$('#popup180s').slideDown(200);
+				setTimeout(function(){
+					$('#popup180s').slideToggle(200);
+				},1000)
+			}
+			if ( $('#counter').text() == 200 ){
+				$('#popup200s').slideDown(200);
+				setTimeout(function(){
+					$('#popup200s').slideToggle(200);
+				},1000)
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+$( document ).ready(function() {
+	$("#start").css({"top":"-10%"});
+    $('#start-button').click(function(){
+	   $('#start').css({"animation":"startup 1s linear"});
+	   $("#scetcik").css({"display": "block"});
+			setTimeout(function () { $("#start").css({"top":"-100%", "display":"none"}); }, 990);
+	   		setTimeout(function () { $("#sceot3").css({"display":"block", "animation":"scetcik 1s linear"}); }, 1000);
+	   		setTimeout(function () { $("#sceot3").css({"display":"none"}); }, 2000);
+            setTimeout(function () { $("#sceot2").css({"display":"block", "animation":"scetcik 1s linear"}); }, 2000);
+            setTimeout(function () { $("#sceot2").css({"display":"none"}); }, 3000);
+            setTimeout(function () { $("#sceot1").css({"display":"block", "animation":"scetcik 1s linear"}); }, 3000);
+            setTimeout(function () { $("#sceot1").css({"display":"none"}); }, 4000);
+            setTimeout(function () { $("#scetcik").css({"display":"none"}); }, 4000);
+            setTimeout(function () { $("#allthis").css({"pointer-events":"auto", "filter":"blur(0px)", "transition":"1s"}); }, 4000);
+	});
+});
+
+</script>
+
+<script type="text/javascript">
+function startCountdown(){
+	setTimeout(function(){
+		$('svg circle').css({"animation":"countdown 60s linear  forwards"});
+	var countdownNumberEl = document.getElementById('countdown-number');
+	var countdown = 60;
+	countdownNumberEl.textContent = countdown;
+		var abs = setInterval(function() {
+
+			if ( $('#counter').text() >999 ){     //    kogda bolishe 125 clickov ostonavlivaem timer i animation
+						$('svg circle').css('animation-play-state','paused');
+						clearInterval(abs);
+						return;
+					}
+		  countdown = --countdown;
+		    if (countdown <= 0) 
+		    { 
+		    	clearInterval(abs);
+		     	countdownNumberEl.textContent = '0'
+		 	}
+		 	else 
+		 	{
+				countdown;
+				countdownNumberEl.textContent = countdown;
+		 	} 
+
+		  	if ( $('#countdown-number').text() == 0){ // kogda timer 0 Youlose popup
+						$("#allthis").css({"pointer-events":"none"});
+						$("#countdown-number").text(0);
+						$('#counter').css({"animation":"cifrawin 1s infinite"});
+						setTimeout(function () {
+							$("#allthis").css({"filter":"blur(5px)", "transition":"2s"});
+							$('#youwin').css({"display":"block", "animation":"downdown 1s linear"});
+						}, 2000);
+						
+					}
+		}, 1000);
+	}, 4000);
+};
+</script>
